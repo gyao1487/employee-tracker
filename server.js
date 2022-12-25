@@ -3,6 +3,9 @@ const express = require('express');
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 
+const showMenu = require('./lib/utils')
+
+//PORT
 const PORT = process.env.PORT || 1487;
 const app = express ();
 
@@ -22,13 +25,25 @@ const db = mysql.createConnection(
     }
 )
 
-async function init() {
-    try {
-       await app.mngPrompt();
-    } catch (err) {
-        console.log("Sorry, we've encountered an error!")
-    }
+db.connect(err => {
+    if (err) throw err;
+    console.log("");
+    console.log('Database successfully connected!');
+    setTimeout(() => {
+        init();
+    }, 500);
+    });
+
+function init () {
+    console.log("");
+    console.log("Welcome to the Employee Database.");
+    setTimeout(() => {
+      showMenu();
+    }, 1000);
 }
+
+
+
 
 
 //Inquirer prompt 
@@ -37,14 +52,14 @@ async function init() {
     //         .prompt(menuQuestion)
     //         .then((data) => {
     //             switch (data.menu) {
-    //                 case 'Add an engineer to the team':
+    //                 case 'View all departments':
     //                     this.engPrompt();
     //                     break;
-    //                 case 'Add an intern to the team':
+    //                 case 'View all roles':
     //                     this.intPrompt();
     //                     // this.menuPrompt();
     //                     break;
-    //                 case "Finalize team and generate roster":
+    //                 case 'View all employees':
     //                     this.finalize()
     //                     break;
     //             }
@@ -69,3 +84,8 @@ async function init() {
 //Update role
     //Select name
     //Update role
+
+    // Default response for any other request (Not Found)
+app.use((req, res) => {
+    res.status(404).end();
+  });
