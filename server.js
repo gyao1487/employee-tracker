@@ -3,6 +3,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 
+const db = require ('./db/connect')
 const showMenu = require('./lib/utils')
 
 //PORT
@@ -13,17 +14,6 @@ const app = express ();
 app.use(express.urlencoded({ extended: false}));
 app.use (express.json())
 
-// Connect to database
-const db = mysql.createConnection(
-    {
-        host: 'localhost',
-        // Insert your MySQL username
-        user: 'root',
-        // Insert your MySQL password
-        password:'il0veM3self!',
-        database: 'employees_db'
-    }
-)
 
 db.connect(err => {
     if (err) throw err;
