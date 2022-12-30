@@ -65,6 +65,8 @@ function showMenu() {
       case "Add a department":
         addDepartment();
         break;
+
+      //Query for adding role:
       case "Add a role":
         addRole();
         break;
@@ -107,9 +109,101 @@ function addDepartment() {
   });
 }
 
-function addRole () {
-  
+function addRole() {
+  const deptArr = [];
+  db.query(`SELECT * FROM departments`, (err, res) => {
+    if (err) throw err;
+    for (let i = 0; i < res.length; i++) {
+      deptArr.push(data[i])}
+    });
+    
+    inquirer.prompt(
+          [{
+            type: "input",
+            name: "title",
+            message: "Enter title for new role:",
+          },
+          {
+            type: "input",
+            name: "salary",
+            message: "Enter the annual salary of this role:",
+          },
+          {
+            type: "list",
+            name: "dept",
+            choices: deptArr,
+            message: "Select the department that this role belongs to:",
+          },
+        ]).then (answers => {
+          let deptId;
+          for (let i=0; i< deptArr.length; i++) {
+            if (answers.department === array[i].dept_name) {
+              departmentId = array[i].dept_id;
+            }
+          };
+          const query =
+                `INSERT INTO roles (title, salary, id_from_dept) VALUES (?)`;
+              db.query(
+                query,
+                [[answers.title, answers.salary, deptId]],
+                (err, res) => {
+                  if (err) throw err;
+                  console.log(" ");
+                  console.log(`Successfully added ${answers.title} role to Department ${answers.dept}.`)
+
+        }     )
+  });
 }
+
+//   const deptArr = [];
+//   // db.query("SELECT * FROM department", (err, res) => {
+//   //   if (err) throw err;
+//   //   // res.forEach((dept) => {
+//   //   //   let deptData = {
+//   //   //     name: dept.name,
+//   //   //     value: dept.id };
+//   //   // });
+//   //   // departments.push(deptData);
+
+//   //   // for (let i = 0; i < res.length; i++) {
+//   //   //   departments.push(Object.values(res[i])[0]);
+//   //   }
+//   // });
+//   inquirer.prompt(
+//     [{
+//       type: "input",
+//       name: "title",
+//       message: "Enter title for new role:",
+//     },
+//     {
+//       type: "input",
+//       name: "salary",
+//       message: "Enter the annual salary of this role:",
+//     },
+//     {
+//       type: "list",
+//       name: "dept",
+//       choices: departments,
+//       message: "Enter the id of the department that this role belongs to:",
+//     },
+//   ]);
+
+//   inquirer.prompt(questions).then((response) => {
+//     const query =
+//       `INSERT INTO roles (title, salary, id_from_dept) VALUES (?)`;
+//     db.query(
+//       query,
+//       [[response.title, response.salary, response.dept]],
+//       (err, res) => {
+//         if (err) throw err;
+//         console.log(" ");
+//         console.log(
+//           `Successfully added ${response.title} role to Department ${response.dept}.`
+//         );
+//       }
+//     );
+//   });
+// }
 
 // showEmployees()
 
