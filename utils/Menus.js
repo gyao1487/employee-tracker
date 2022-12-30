@@ -60,13 +60,14 @@ function showMenu() {
           }
         );
         break;
-        
-      //   case "Add a department":
-      //     addDept();
-      //     break;
-      //   case "Add a role":
-      //     addRolePrompt();
-      //     break;
+
+      //Query for adding department:
+      case "Add a department":
+        addDepartment();
+        break;
+      case "Add a role":
+        addRole();
+        break;
       //   case "Add an employee":
       //     addEmployee();
       //     break;
@@ -83,21 +84,32 @@ function backToMenu() {
   }, 500);
 }
 
-function showDept() {
-  const sql = `SELECT * from department`;
-  db.query(sql, (err, rows) => {
-    if (err) {
-      console.log(err.message);
-    }
-    console.log("");
-    console.table(rows);
-    setTimeout(() => {
-      showMenu();
-    }, 800);
+function addDepartment() {
+  let questions = [
+    {
+      type: "input",
+      name: "name",
+      message: "Enter the name of the new department:",
+    },
+  ];
+
+  inquirer.prompt(questions).then((response) => {
+    const query = `INSERT INTO department (dept_name) VALUES (?)`;
+    db.query(query, [response.name], (err, res) => {
+      if (err) throw err;
+      console.log(" ");
+      console.log(
+        `Successfully added ${response.name}! Department id is ${res.insertId}.`
+      );
+      console.log(" ");
+      backToMenu();
+    });
   });
 }
 
-// showRoles()
+function addRole () {
+  
+}
 
 // showEmployees()
 
