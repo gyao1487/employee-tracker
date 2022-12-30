@@ -1,7 +1,7 @@
 const menuPrompt = {
   type: "list",
   name: "menu",
-  message: "Welcome to the Employee Database. What would you like to do?",
+  message: "What would you like to do?",
   choices: [
     "View all departments",
     "View all roles",

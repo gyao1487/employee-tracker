@@ -5,16 +5,16 @@ VALUES  ("Operations"),
         ("HR");
 
 
-INSERT INTO roles (title, salary, department_id)
-VALUES  ("CEO", "500000", 1),
-        ("Director of Operations", "250000", 1),
-        ("Director of Marketing", "250000", 2);
-        ("Brand Strategist" =, "150000",2)
+INSERT INTO roles (title, id_from_dept, salary)
+VALUES  ("CEO", 1, 500000),
+        ("Director of Operations", 1, 250000),
+        ("Director of Marketing", 2, 250000),
+        ("Brand Strategist",2, 150000);
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES  ("Rhea", "Seiros", 1, null),
+INSERT INTO employee (first_name, last_name, id_from_roles, manager_id)
+VALUES  ("Rhea", "Seiros", 1, 1),
         ("Jeralt", "Eisner", 2, 1),
-        ("Catherine", "Charon", 3, 1);
+        ("Catherine", "Charon", 3, 2),
         ("Shamir", "Nevrand", 3, 3);
 
 
