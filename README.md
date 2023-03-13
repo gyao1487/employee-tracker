@@ -1,4 +1,4 @@
-# SQL employee-tracker
+# SQL Employee Tracker
 ![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
@@ -20,8 +20,13 @@ This is a command line application built with Nodejs and MySQL that allows users
 
 By answering the different prompts users can conduct the following functions:
 
-* Create a user account, delete a user account, update user information, search all users, search individual user
-https://drive.google.com/file/d/19NNr9g4yOjPbKRZop9r_bKwgogskgxO1/view
+* View all departments in the company
+* View all roles in the company, the departments they belong to, and the annual salary
+* View all employees in the company, their roles, department, and manager
+* Create a new department
+* Create a new role
+* Create a new employee
+* Update information on existing employees 
 
 ## Installation
 💾 This project requires the following already installed to your machine:
