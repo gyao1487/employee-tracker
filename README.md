@@ -3,8 +3,7 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
 ## Description
-This is a command line application built with Nodejs and MySQL that allows users to track employees. This content management system allows users to view and manage departments, roles, and employees in their company. By utilizing Inquirer, the app presents user-friendly prompts that when answered, will create/update/display  the information requested.
-
+Revolutionize employee management with our user-friendly command-line application! Built with Node.js and MySQL and utilizing Inquirer, this content management system allows you to effortlessly view and manage departments, roles, and employees in your company. Say goodbye to complex spreadsheets and embrace a seamless tracking experience.
 
 ## Table of Contents 
   - [Features](#features)
@@ -23,9 +22,7 @@ By answering the different prompts users can conduct the following functions:
 * View all departments in the company
 * View all roles in the company, the departments they belong to, and the annual salary
 * View all employees in the company, their roles, department, and manager
-* Create a new department
-* Create a new role
-* Create a new employee
+* Create new departments, roles, and employees
 * Update information on existing employees 
 
 ## Installation
